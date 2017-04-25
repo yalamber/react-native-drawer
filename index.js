@@ -57,6 +57,7 @@ export default class Drawer extends Component {
     panOpenMask: PropTypes.number,
     side: PropTypes.oneOf(['left', 'right']),
     styles: PropTypes.object,
+    backgroundImage: PropTypes.string,
     tapToClose: PropTypes.bool,
     tweenDuration: PropTypes.number,
     tweenEasing: PropTypes.string,
@@ -93,6 +94,7 @@ export default class Drawer extends Component {
     tapToClose: false,
 
     styles: {},
+    backgroundImage: '',
     elevation: 0,
     onOpen: () => {},
     onClose: () => {},
@@ -151,6 +153,15 @@ export default class Drawer extends Component {
       justifyContent: 'center',
       alignItems: 'center'
     }, this.props.styles.container)
+
+    styles.backgroundImage = Object.assign({
+      flex: 1,
+      width: undefined,
+      height: undefined,
+      backgroundColor:'transparent',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }, this.props.styles.backgroundImage)
 
     styles.main = Object.assign({
       position: 'absolute',
@@ -512,17 +523,26 @@ export default class Drawer extends Component {
   render() {
     let first = this.props.type === 'overlay' ? this.renderMain() : this.renderDrawer()
     let second = this.props.type === 'overlay' ? this.renderDrawer() : this.renderMain()
-
-    return (
-      <View
-        key="drawerContainer"
-        onLayout={this.handleSetViewport}
-        style={this.stylesheet.container}
-        >
-        {first}
-        {second}
-      </View>
-    )
+    
+    if(this.props.backgroundImage!= '') {
+      return (
+        <Image style={this.style.imageBackground} source={require(this.props.backgroundImage)}> 
+          {first}
+          {second}
+        </Image>
+      )
+    } else {
+      return (
+        <View
+          key="drawerContainer"
+          onLayout={this.handleSetViewport}
+          style={this.stylesheet.container}
+          >
+          {first}
+          {second}
+        </View>
+      )
+    }
   }
 
   renderMain() {
