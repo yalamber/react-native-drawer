@@ -526,7 +526,7 @@ export default class Drawer extends Component {
     
     if(this.props.backgroundImage!= '') {
       return (
-        <Image style={this.style.backgroundImage} source={require(this.props.backgroundImage)}> 
+        <Image style={this.stylesheet.backgroundImage} source={require(this.props.backgroundImage)}> 
           {first}
           {second}
         </Image>
