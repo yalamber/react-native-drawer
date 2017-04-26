@@ -536,8 +536,7 @@ export default class Drawer extends Component {
         <View
           key="drawerContainer"
           onLayout={this.handleSetViewport}
-          style={this.stylesheet.container}
-          >
+          style={this.stylesheet.container}>
           {first}
           {second}
         </View>
