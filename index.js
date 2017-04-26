@@ -57,7 +57,7 @@ export default class Drawer extends Component {
     panOpenMask: PropTypes.number,
     side: PropTypes.oneOf(['left', 'right']),
     styles: PropTypes.object,
-    backgroundImage: PropTypes.string,
+    backgroundImage: PropTypes.any,
     tapToClose: PropTypes.bool,
     tweenDuration: PropTypes.number,
     tweenEasing: PropTypes.string,
@@ -526,7 +526,7 @@ export default class Drawer extends Component {
     
     if(this.props.backgroundImage!= '') {
       return (
-        <Image style={this.stylesheet.backgroundImage} source={require(this.props.backgroundImage)}> 
+        <Image style={this.stylesheet.backgroundImage} source={this.props.backgroundImage}> 
           {first}
           {second}
         </Image>
